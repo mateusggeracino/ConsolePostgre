@@ -1,6 +1,7 @@
 ﻿using System;
 using ConsolePostgre.domain;
 using ConsolePostgre.repository;
+using GenFu;
 
 namespace ConsolePostgre
 {
@@ -8,11 +9,15 @@ namespace ConsolePostgre
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var repository = new Repository<Client>();
+            var client = A.New<Client>();
 
-            var teste = new Repository<Client>();
+            var insert = repository.Insert(client);
+            var update = repository.Update(client);
+            var getById = repository.GetById(client.Id);
+            var delete = repository.Delete(client);
 
-            var mateus = teste.GetById(1);
+            Console.ReadKey();
         }
     }
 }

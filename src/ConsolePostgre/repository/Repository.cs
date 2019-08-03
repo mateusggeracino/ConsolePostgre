@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using ConsolePostgre.domain;
 using ConsolePostgre.repository.context;
 using Dapper.Contrib.Extensions;
@@ -8,20 +9,89 @@ namespace ConsolePostgre.repository
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        protected IDbConnection Conn => new NpgsqlConnection("server=35.247.228.110;database=DeveloperDB05;user id=developers;password=dev123DEV123");
+        protected IDbConnection Conn => new NpgsqlConnection(Connection.GetConnectionString());
         public T Insert(T obj)
         {
-            throw new System.NotImplementedException();
+            OpenConn();
+
+            using (var transation = Conn.BeginTransaction())
+            {
+                try
+                {
+                    Conn.Insert(obj);
+                    transation.Commit();
+                }
+                catch (Exception)
+                {
+                    transation.Rollback();
+                }
+                finally
+                {
+                    if (Conn.State == ConnectionState.Open)
+                    {
+                        transation.Dispose();
+                        Conn.Close();
+                    }
+                }
+            }
+
+            return obj;
         }
 
         public T Update(T obj)
         {
-            throw new System.NotImplementedException();
+            Conn.Open();
+
+            using (var transation = Conn.BeginTransaction())
+            {
+                try
+                {
+                    Conn.Update(obj);
+                    transation.Commit();
+                }
+                catch (Exception)
+                {
+                    transation.Rollback();
+                }
+                finally
+                {
+                    if (Conn.State == ConnectionState.Open)
+                    {
+                        transation.Dispose();
+                        Conn.Close();
+                    }
+                }
+            }
+
+            return obj;
         }
 
         public T Delete(T obj)
         {
-            throw new System.NotImplementedException();
+            Conn.Open();
+
+            using (var transation = Conn.BeginTransaction())
+            {
+                try
+                {
+                    Conn.Delete(obj);
+                    transation.Commit();
+                }
+                catch (Exception)
+                {
+                    transation.Rollback();
+                }
+                finally
+                {
+                    if (Conn.State == ConnectionState.Open)
+                    {
+                        transation.Dispose();
+                        Conn.Close();
+                    }
+                }
+            }
+
+            return obj;
         }
 
         public T GetById(int id)
