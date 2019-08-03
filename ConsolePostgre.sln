@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Console", "1 - Console", "{4579070F-0B94-432D-8EDD-6E83CB2BCADF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolePostgre", "src\ConsolePostgre\ConsolePostgre.csproj", "{D264D893-3DC6-45BF-A02D-C193D2AE5DCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D264D893-3DC6-45BF-A02D-C193D2AE5DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D264D893-3DC6-45BF-A02D-C193D2AE5DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D264D893-3DC6-45BF-A02D-C193D2AE5DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D264D893-3DC6-45BF-A02D-C193D2AE5DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D264D893-3DC6-45BF-A02D-C193D2AE5DCC} = {4579070F-0B94-432D-8EDD-6E83CB2BCADF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B8EB0E8-909D-4352-AD85-62A4FC0C60F4}
+	EndGlobalSection
+EndGlobal
