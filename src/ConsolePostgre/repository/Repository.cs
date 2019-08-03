@@ -40,7 +40,7 @@ namespace ConsolePostgre.repository
 
         public T Update(T obj)
         {
-            Conn.Open();
+            OpenConn();
 
             using (var transation = Conn.BeginTransaction())
             {
@@ -68,7 +68,7 @@ namespace ConsolePostgre.repository
 
         public T Delete(T obj)
         {
-            Conn.Open();
+            OpenConn();
 
             using (var transation = Conn.BeginTransaction())
             {
@@ -97,6 +97,11 @@ namespace ConsolePostgre.repository
         public T GetById(int id)
         {
             return Conn.Get<T>(id);
+        }
+
+        private void OpenConn()
+        {
+            if (Conn.State == ConnectionState.Open) Conn.Open();
         }
     }
 }
