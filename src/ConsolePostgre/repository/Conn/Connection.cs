@@ -1,8 +1,7 @@
 ﻿using System.IO;
 using Microsoft.Extensions.Configuration;
-using Npgsql;
 
-namespace ConsolePostgre.repository.context
+namespace ConsolePostgre.repository.Conn
 {
     public static class Connection
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using ConsolePostgre.domain;
-using ConsolePostgre.repository.context;
+using ConsolePostgre.repository.Conn;
 using Dapper.Contrib.Extensions;
 using Npgsql;
 
@@ -9,11 +9,14 @@ namespace ConsolePostgre.repository
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        protected IDbConnection Conn => new NpgsqlConnection(Connection.GetConnectionString());
+        protected IDbConnection Conn;
+        public Repository()
+        {
+            Conn = new NpgsqlConnection(Connection.GetConnectionString());
+        }
         public T Insert(T obj)
         {
             OpenConn();
-
             using (var transation = Conn.BeginTransaction())
             {
                 try
@@ -101,7 +104,7 @@ namespace ConsolePostgre.repository
 
         private void OpenConn()
         {
-            if (Conn.State == ConnectionState.Open) Conn.Open();
+            if (Conn.State == ConnectionState.Closed) Conn.Open();
         }
     }
 }
